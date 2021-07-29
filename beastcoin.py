@@ -90,6 +90,8 @@ class Blockchain:
 
 app = Flask(__name__)
 
+node_address = str(uuid4()).replace('-', '')
+
 blockchain = Blockchain()
 
 @app.route('/mine_block', methods = ['GET'])
