@@ -147,4 +147,15 @@ def connect_node():
                 'total_nodes': list(blockchain.nodes)}
     return jsonify(response), 201
 
+@app.route('/replace_chain', methods = ['GET'])
+def replace_chain():
+    is_chain_replaced = blockchain.replace_chain()
+    if is_chain_replaced:
+        response = {'message': 'chain was replaced by the longest one.',
+                    'new_chain': blockchain.chain}
+    else:
+        response = {'message': 'The chain is already largest one.',
+                    'actual_chain': blockchain.chain}
+    return jsonify(response), 200
+
 app.run(host = '0.0.0.0', port = 5000)
